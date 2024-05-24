@@ -6,6 +6,9 @@ Cada corredor possui um comportamento de movimento específico. Um corredor pode 
 
 A corrida continua até que um dos corredores atinja a marca de 100 metros, sendo declarado o vencedor. O prêmio da corrida é dividido entre os apostadores que apostaram no corredor vencedor. Após o término da corrida, o sistema deve exibir a colocação final de todos os corredores e o saldo final de cada apostador, refletindo os ganhos ou perdas decorrentes das apostas.
 
+![Cachorro Pulando](docs/corrida_cachorro.gif)
+
+
 ## Simulação de Corrida de Apostas
 
 ### Cenários de Teste
@@ -61,3 +64,4 @@ A corrida continua até que um dos corredores atinja a marca de 100 metros, sendo
 - Crie um projeto console para rodar
 - Crie um projeto class library para suas classes
 - Crie um projeto de teste
+
