@@ -4,6 +4,9 @@
     {
         public List<Apostador> Apostadores { get; set; }
         public List<Corredor> Corredores { get; set; }
+        public decimal ValorTotalDeApostas { get; set; }
+
+        public Corredor Vencedor { get; set; }
 
         public CasaDeApostas(
             int numeroDeApostadores,
@@ -14,11 +17,11 @@
 
             for (int i = 1; i <= numeroDeApostadores; i++)
             {
-                Apostadores.Add(new Apostador($"Apostador{i}"));
+                AdicionarApostador(new Apostador($"Apostador{i}"));
             }
             for (int i = 1; i <= numeroDeCorredores; i++)
             {
-                Corredores.Add(new Corredor($"Corredor{i}"));
+                AdicionarCorredor(new Corredor($"Corredor{i}"));
             }
 
             ValidarApostadoresCorredores();
@@ -28,6 +31,11 @@
         {
             Apostadores = new List<Apostador>();
             Corredores = new List<Corredor>();
+        }
+
+        public void AdicionarApostador(Apostador apostador)
+        {
+            Apostadores.Add(apostador);
         }
 
         public void AdicionarCorredor(Corredor corredor)
@@ -50,23 +58,60 @@
 
         public void ExecutarCorrida()
         {
+
+            int possicao = 0;
             do
             {
+                foreach (var corredor in Corredores)
+                {
+                    if (corredor.DistanciaPercorrida >= 100)
+                    {
+                        Vencedor = corredor;
+                    }
+                    corredor.Correr();
+                }
+            } while (Vencedor == null);
 
-            } while (ValidarDistanciaCorredores());
+            DistribuicaoPremio();
+
+            Corredor[] corredoresOrdenados =
+                Corredores.
+                OrderByDescending(c => c.DistanciaPercorrida).ToArray();
+
+            foreach (var corredorOrdenado in corredoresOrdenados)
+            {
+                possicao++;
+                corredorOrdenado.Posicao = possicao;
+            }
         }
 
-        private bool ValidarDistanciaCorredores()
+        private void DistribuicaoPremio()
         {
-            foreach (var corredor in Corredores)
+            List<Apostador> vencedores = new List<Apostador>();
+
+            foreach (Apostador apostador in Apostadores)
             {
-                corredor.Correr();
-                if (corredor.DistanciaPercorrida < 100)
+                if (apostador.CorredorApostado == Vencedor)
                 {
-                    return true;
+                    vencedores.Add(apostador);
                 }
             }
-            return false;
+            if (vencedores.Count > 0)
+            {
+                decimal valorPremio = ValorTotalDeApostas / vencedores.Count;
+
+                foreach (Apostador apostador in vencedores)
+                {
+                    apostador.ReceberPremio(valorPremio);
+                }
+            }
+        }
+
+        public void Apostar(Apostador apostador, Corredor corredor, decimal valorAposta)
+        {
+            apostador.Saque(valorAposta);
+            ValorTotalDeApostas += valorAposta;
+            apostador.CorredorApostado = corredor;
         }
     }
 }

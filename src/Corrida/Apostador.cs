@@ -4,11 +4,22 @@ public class Apostador
 {
     public string Nome { get; set; }
     public decimal Saldo;
+    public Corredor CorredorApostado { get; set; }
 
     public Apostador(string nomeApostador = "")
     {
         this.Saldo = 20;
         this.Nome = nomeApostador;
+    }
+
+    public void Saque(decimal saque)
+    {
+        Saldo -= saque;
+    }
+
+    public void ReceberPremio(decimal premio)
+    {
+        Saldo += premio;
     }
 }
 
@@ -37,6 +48,8 @@ public class Corredor
     //Deve percorrer 100 metros por corrida.
     public decimal DistanciaPercorrida { get; set; }
 
+    public int Posicao { get; set; }
+
     private TipoDeMovimento TipodeDeMovimento { get; set; }
     private Random random { get; set; }
     public int MovimentoMin { get; private set; }
@@ -53,6 +66,7 @@ public class Corredor
         }
         this.Nome = nomeCorredor;
         this.DefenirMovimento();
+        Posicao = 0;
     }
 
     private void DefenirMovimento()
@@ -80,7 +94,8 @@ public class Corredor
 
     public void Correr()
     {
-        DistanciaPercorrida += (random.Next(MovimentoMin, MovimentoMax) / 100);
+        decimal valorMovimento = random.Next(MovimentoMin, MovimentoMax);
+        DistanciaPercorrida += (valorMovimento / 100);
     }
 
     public Corredor CriarCorredor()
