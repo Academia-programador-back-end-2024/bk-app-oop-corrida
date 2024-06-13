@@ -8,7 +8,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Corrida", "Corrida\Corrida.csproj", "{C9BA1DA4-819C-4881-A7FD-1ADCF18BB659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorridaTest", "CorridaTest\CorridaTest.csproj", "{32848082-1330-4997-BAD4-B99B3046DF97}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9BA1DA4-819C-4881-A7FD-1ADCF18BB659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9BA1DA4-819C-4881-A7FD-1ADCF18BB659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9BA1DA4-819C-4881-A7FD-1ADCF18BB659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9BA1DA4-819C-4881-A7FD-1ADCF18BB659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32848082-1330-4997-BAD4-B99B3046DF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32848082-1330-4997-BAD4-B99B3046DF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32848082-1330-4997-BAD4-B99B3046DF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32848082-1330-4997-BAD4-B99B3046DF97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
